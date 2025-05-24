@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#f5f5f5"/>
+  <circle cx="50" cy="50" r="15" fill="#1976d2"/>
+  <circle cx="150" cy="50" r="15" fill="#f44336"/>
+  <circle cx="100" cy="100" r="15" fill="#4caf50"/>
+  <circle cx="50" cy="150" r="15" fill="#ff9800"/>
+  <circle cx="150" cy="150" r="15" fill="#9c27b0"/>
+  <line x1="50" y1="50" x2="100" y2="100" stroke="#666" stroke-width="2"/>
+  <line x1="150" y1="50" x2="100" y2="100" stroke="#666" stroke-width="2"/>
+  <line x1="100" y1="100" x2="50" y2="150" stroke="#666" stroke-width="2"/>
+  <line x1="100" y1="100" x2="150" y2="150" stroke="#666" stroke-width="2"/>
+  <text x="100" y="180" text-anchor="middle" fill="#666" font-size="12">No Image</text>
+</svg>

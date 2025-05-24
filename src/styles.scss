@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+//@import '@angular/material/prebuilt-themes/azure-blue.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+// Custom snackbar styles
+.success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+// Loading spinner customization
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #1976d2;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+// Responsive utilities
+@media (max-width: 768px) {
+  .mat-mdc-card {
+    margin: 8px !important;
+  }
+  
+  .mat-toolbar {
+    padding: 0 8px !important;
+  }
+}
+
+// Animation utilities
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Focus styles for accessibility
+.mat-mdc-button:focus,
+.mat-mdc-raised-button:focus,
+.mat-mdc-card:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+// Print styles
+@media print {
+  .mat-toolbar,
+  .mat-paginator,
+  .auth-buttons,
+  .form-actions {
+    display: none !important;
+  }
+}

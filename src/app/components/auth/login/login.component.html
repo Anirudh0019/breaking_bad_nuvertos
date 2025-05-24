@@ -1,0 +1,69 @@
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>login</mat-icon>
+        Login
+      </mat-card-title>
+      <mat-card-subtitle>Sign in to edit compounds</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" placeholder="Enter your username">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Username is required
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('minlength')">
+            Username must be at least 3 characters long
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput 
+            [type]="hidePassword ? 'password' : 'text'" 
+            formControlName="password" 
+            placeholder="Enter your password">
+          <button 
+            mat-icon-button 
+            matSuffix 
+            (click)="hidePassword = !hidePassword"
+            type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <button 
+          type="submit" 
+          mat-raised-button 
+          color="primary" 
+          class="full-width auth-button"
+          [disabled]="loginForm.invalid || loading">
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <mat-icon *ngIf="!loading">login</mat-icon>
+          {{ loading ? 'Signing in...' : 'Sign In' }}
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions class="auth-actions">
+      <p>Don't have an account?</p>
+      <button mat-button color="primary" routerLink="/register">Create Account</button>
+    </mat-card-actions>
+
+    <mat-card-actions class="auth-actions">
+      <button mat-button routerLink="/compounds">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Gallery
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
