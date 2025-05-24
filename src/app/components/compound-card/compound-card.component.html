@@ -1,1 +1,13 @@
-<p>compound-card works!</p>
+<mat-card class="compound-card" [routerLink]="['/compounds', compound.id]">
+      <div class="card-image-container">
+        <img 
+          [src]="compound.image" 
+          [alt]="compound.name"
+          class="compound-image"
+          (error)="onImageError($event)"
+        />
+      </div>
+      <mat-card-content>
+        <h3 class="compound-name">{{ compound.name }}</h3>
+      </mat-card-content>
+    </mat-card>

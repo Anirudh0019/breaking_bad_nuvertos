@@ -1,1 +1,65 @@
-<p>compound-gallery works!</p>
+<div class="gallery-container">
+      <mat-toolbar class="gallery-header">
+        <span>Chemical Compounds Gallery</span>
+        <div class="header-spacer"></div>
+        <div class="auth-buttons">
+          <ng-container *ngIf="!isLoggedIn()">
+            <button mat-button routerLink="/login">
+              <mat-icon>login</mat-icon>
+              Login
+            </button>
+            <button mat-button routerLink="/register">
+              <mat-icon>person_add</mat-icon>
+              Register
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn()">
+            <span class="welcome-text">Welcome!</span>
+            <button mat-button (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              Logout
+            </button>
+          </ng-container>
+        </div>
+      </mat-toolbar>
+
+      <div class="gallery-content">
+        <div *ngIf="loading" class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading compounds...</p>
+        </div>
+
+        <div *ngIf="!loading && compounds.length > 0" class="compounds-grid">
+          <app-compound-card 
+            *ngFor="let compound of compounds" 
+            [compound]="compound">
+          </app-compound-card>
+        </div>
+
+        <div *ngIf="!loading && compounds.length === 0" class="no-compounds">
+          <mat-icon>science</mat-icon>
+          <h3>No compounds found</h3>
+          <p>There are no compounds available at the moment.</p>
+        </div>
+
+        <mat-paginator 
+          *ngIf="!loading && totalCompounds > 10"
+          [length]="totalCompounds"
+          [pageSize]="pageSize"
+          [pageIndex]="currentPage - 1"
+          [pageSizeOptions]="[10]"
+          [showFirstLastButtons]="true"
+          [hidePageSize]="true"
+          (page)="onPageChange($event)"
+          class="paginator">
+        </mat-paginator>
+
+        <!-- Debug info - remove this after testing -->
+        <div *ngIf="!loading" class="debug-info">
+          <small>
+            Page: {{currentPage}} | Total: {{totalCompounds}} | 
+            Showing: {{compounds.length}} compounds
+          </small>
+        </div>
+      </div>
+    </div>

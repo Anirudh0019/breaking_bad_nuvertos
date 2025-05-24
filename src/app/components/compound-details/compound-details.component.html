@@ -1,1 +1,53 @@
-<p>compound-details works!</p>
+<div class="details-container">
+      <mat-toolbar class="details-header">
+        <button mat-icon-button routerLink="/compounds">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Compound Details</span>
+        <div class="header-spacer"></div>
+        <button 
+          *ngIf="compound && isLoggedIn()" 
+          mat-raised-button 
+          color="primary"
+          [routerLink]="['/compounds', compound.id, 'edit']">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+      </mat-toolbar>
+
+      <div class="details-content">
+        <div *ngIf="loading" class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading compound details...</p>
+        </div>
+
+        <mat-card *ngIf="!loading && compound" class="compound-details-card">
+          <div class="compound-header">
+            <h1>{{ compound.name }}</h1>
+          </div>
+          
+          <div class="compound-image-section">
+            <img 
+              [src]="compound.image" 
+              [alt]="compound.name"
+              class="compound-image"
+              (error)="onImageError($event)"
+            />
+          </div>
+
+          <mat-card-content class="compound-description">
+            <h3>Description</h3>
+            <p>{{ compound.description }}</p>
+          </mat-card-content>
+        </mat-card>
+
+        <div *ngIf="!loading && !compound" class="error-container">
+          <mat-icon>error</mat-icon>
+          <h3>Compound not found</h3>
+          <p>The compound you're looking for doesn't exist.</p>
+          <button mat-raised-button color="primary" routerLink="/compounds">
+            Back to Gallery
+          </button>
+        </div>
+      </div>
+    </div>

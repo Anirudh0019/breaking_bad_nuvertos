@@ -1,1 +1,95 @@
-<p>compound-edit works!</p>
+<div class="edit-container">
+      <mat-toolbar class="edit-header">
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Edit Compound</span>
+      </mat-toolbar>
+
+      <div class="edit-content">
+        <div *ngIf="loading" class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading compound...</p>
+        </div>
+
+        <mat-card *ngIf="!loading && editForm" class="edit-card">
+          <mat-card-header>
+            <mat-card-title>Edit Compound Details</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="edit-form">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Compound Name</mat-label>
+                <input matInput formControlName="name" placeholder="Enter compound name">
+                <mat-error *ngIf="editForm.get('name')?.hasError('required')">
+                  Name is required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Image URL</mat-label>
+                <input matInput formControlName="image" placeholder="Enter image URL">
+                <mat-error *ngIf="editForm.get('image')?.hasError('required')">
+                  Image URL is required
+                </mat-error>
+                <mat-error *ngIf="editForm.get('image')?.hasError('pattern')">
+                  Please enter a valid URL
+                </mat-error>
+              </mat-form-field>
+
+              <div class="image-preview" *ngIf="editForm.get('image')?.value">
+                <h4>Image Preview:</h4>
+                <img 
+                  [src]="editForm.get('image')?.value" 
+                  alt="Preview"
+                  class="preview-image"
+                  (error)="onImageError($event)"
+                />
+              </div>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Description</mat-label>
+                <textarea 
+                  matInput 
+                  formControlName="description" 
+                  placeholder="Enter compound description"
+                  rows="4">
+                </textarea>
+                <mat-error *ngIf="editForm.get('description')?.hasError('required')">
+                  Description is required
+                </mat-error>
+              </mat-form-field>
+
+              <div class="form-actions">
+                <button 
+                  type="button" 
+                  mat-button 
+                  (click)="goBack()"
+                  [disabled]="saving">
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  mat-raised-button 
+                  color="primary"
+                  [disabled]="editForm.invalid || saving">
+                  <mat-icon *ngIf="saving">hourglass_empty</mat-icon>
+                  <mat-icon *ngIf="!saving">save</mat-icon>
+                  {{ saving ? 'Saving...' : 'Save Changes' }}
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+        <div *ngIf="!loading && !compound" class="error-container">
+          <mat-icon>error</mat-icon>
+          <h3>Compound not found</h3>
+          <p>The compound you're trying to edit doesn't exist.</p>
+          <button mat-raised-button color="primary" routerLink="/compounds">
+            Back to Gallery
+          </button>
+        </div>
+      </div>
+    </div>
