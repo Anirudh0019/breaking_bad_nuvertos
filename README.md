@@ -1,5 +1,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+# install & demo video guide
+1. [link to yt guide](https://youtu.be/G-5pEwAW_Gc)
+2. [link to same video on drive](https://drive.google.com/file/d/1F8qcySw6K-4v0HcL43gG0dDVjuj4nro9/view?usp=sharing)
+
 # Backend link
 Backend exists on this gh repo
 [https://github.com/Anirudh0019/nuvertos_brb_backend](https://github.com/Anirudh0019/nuvertos_brb_backend)
@@ -11,7 +15,8 @@ Backend exists on this gh repo
 1. go to the github repo linked above
 2. run `git clone [link]`
 3. cd into the cloned repo, e.g. cd cloned/
-4. docker compose up -d
+4. run these two commands `docker network create test-new` & `docker volume create test-new`.
+5. Finally run `docker compose up -d`.
 will take some time, let it spin up,
 ### Whats happening?
 backend docker compose contains 3 services, actual_backend service, mysql db, and adminer(adminer is just to debug etc)
