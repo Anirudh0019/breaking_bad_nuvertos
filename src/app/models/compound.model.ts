@@ -20,7 +20,7 @@ export interface PaginationParams {
 export interface User {
   id: number;
   username: string;
-  createdAt?: string; // Optional: if you want to include creation date
+  createdAt?: string; 
 }
 
 export interface AuthResponse {

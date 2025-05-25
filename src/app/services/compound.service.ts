@@ -12,20 +12,18 @@ export class CompoundService {
   getCompounds(params: PaginationParams): Observable<CompoundResponse> {
     return this.apiService.get<any>('/compounds', params).pipe(
       map(response => {
-        // Handle both possible response formats
+        
         if (response.compounds) {
-          // If backend returns { compounds: [...], total: number }
           return response;
         } else if (Array.isArray(response)) {
-          // If backend returns just an array of compounds
+          
           return {
             compounds: response,
-            total: response.length > 0 ? 30 : 0, // Assume 30 total compounds as per requirement
+            total: response.length > 0 ? 30 : 0, 
             currentPage: params.page,
             totalPages: Math.ceil(30 / 10)
           };
         } else {
-          // Handle other formats
           return {
             compounds: response.compounds || [],
             total: response.total || 30,

@@ -13,6 +13,7 @@ export class AuthService {
   constructor(private apiService: ApiService) {
     // Check if user is already logged in
     const token = localStorage.getItem('token');
+    //  if user context to be added, addd here
     // const user = localStorage.getItem('user');
     // if (token ) {
     //   this.currentUserSubject.next(JSON.parse(user));
