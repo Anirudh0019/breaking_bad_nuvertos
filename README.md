@@ -1,4 +1,3 @@
-# BreakingBad
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 # Backend link
@@ -7,12 +6,32 @@ Backend exists on this gh repo
 ## requirements to run backend:
 1. docker compose & docker
 2. node 20 +
-- to run
-- `docker compose up -d`
-- `npm i`
-- `npm run dev`
 
-will add support for docker soon
+# Steps to run locally
+1. go to the github repo linked above
+2. run `git clone [link]`
+3. cd into the cloned repo, e.g. cd cloned/
+4. docker compose up -d
+will take some time, let it spin up,
+### Whats happening?
+backend docker compose contains 3 services, actual_backend service, mysql db, and adminer(adminer is just to debug etc)
+adminer creds should be:
+host:db 
+password:password
+user:root 
+DB_NAME=compound_db
+(probably, in case these don't work, u can find creds in `.env` file inside backend/
+## FInal steps, the frontend.
+1. run this command
+2. `docker pull anirudh781/compound_gallery_web:latest`
+3. finally, once the image is pulled, run the command below
+4. `docker run -p 80:80 anirudh781/compound_gallery_web:latest`
+5. to run without logs, use a `docker run -d -p 80:80 anirudh781/compound_gallery_web:latest`
+
+## to view the result
+go to `http://localhost` on any web browser
+link to a guide video will be present at the top of this page
+
 
 ## Development server
 Run `npm i`
