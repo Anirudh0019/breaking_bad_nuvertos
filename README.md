@@ -3,6 +3,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # install & demo video guide
 1. [link to yt guide](https://youtu.be/G-5pEwAW_Gc)
 2. [link to same video on drive](https://drive.google.com/file/d/1F8qcySw6K-4v0HcL43gG0dDVjuj4nro9/view?usp=sharing)
+3. [link to api doc](https://documenter.getpostman.com/view/37552337/2sB2qcCfpC)
+
+to use apis like the ones mentioned in "3", u will either need to use the docker compose up similar to mentioned below.
 
 # Backend link
 Backend exists on this gh repo
